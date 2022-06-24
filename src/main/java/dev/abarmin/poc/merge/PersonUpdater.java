@@ -5,7 +5,10 @@ import org.mapstruct.*;
 
 @Mapper(
         componentModel = "spring",
-        uses = AddressUpdater.class,
+        uses = {
+                AddressUpdater.class,
+                PersonNameUpdater.class
+        },
 
         unmappedSourcePolicy = ReportingPolicy.ERROR,
         unmappedTargetPolicy = ReportingPolicy.ERROR,
@@ -13,5 +16,11 @@ import org.mapstruct.*;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public interface PersonUpdater {
-    Person update(Person source, @MappingTarget Person target);
+    Person update(
+            Person source,
+            @MappingTarget Person target
+    );
 }
+
+// DTO -> conversion -> @Entity
+// @Entity -> DTO
