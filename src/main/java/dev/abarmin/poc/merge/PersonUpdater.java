@@ -4,16 +4,11 @@ import dev.abarmin.poc.merge.model.Person;
 import org.mapstruct.*;
 
 @Mapper(
-        componentModel = "spring",
+        config = MapperConfiguration.class,
         uses = {
                 AddressUpdater.class,
                 PersonNameUpdater.class
-        },
-
-        unmappedSourcePolicy = ReportingPolicy.ERROR,
-        unmappedTargetPolicy = ReportingPolicy.ERROR,
-
-        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+        }
 )
 public interface PersonUpdater {
     Person update(
